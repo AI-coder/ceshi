@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.4.1.min.js",></script>
+    <script src="/static/js/echarts.min.js"></script>
+</head>
+<body>
+<table border="1" cellpadding="1" cellspacing="1" align="center" width="100%">
+    <tr>
+        <td colspan="1" align="center">数据信息</td>
+    </tr>
+    <tr>
+       <td align="center">
+           <div style="border:2px solid #666;width:49%;height:400px;float:left" id="chartmain"></div>
+           <div style="border:2px solid #666;width:50%;height:400px;float:left" id="chartmain1"></div>
+       </td>
+    </tr>
+    <tr>
+        <td colspan="1">hahaha</td>
+    </tr>
+</table>
+<!--    <div style="border:2px solid #666;width:49%;height:450px;float:left" id="chartmain"></div>-->
+<!--    <div style="border:2px solid #666;width:49%;height:450px;float:left" id="chartmain1"></div>-->
+    <script type="text/javascript">
+// var data = {"name":"1","children":[{"name":"1","children":[{"name":"4","children":[]}]},{"name":"2","children":[{"name":"5","children":[]}]},{"name":"3","children":[{"name":"6","children":[]}]}]};
+var myChart1 = echarts.init(document.getElementById("chartmain"),"macarons");
+var myChart2 = echarts.init(document.getElementById("chartmain1"),"macarons");
+var data = {'name': '|-', 'children': [{'name': '!!', 'children': [{'name': 'n', 'children': []}, {'name': '!!', 'children': [{'name': 'm', 'children': []}, {'name': '=', 'children': [{'name': '-', 'children': [{'name': 'SUC', 'children': [{'name': 'm', 'children': []}]}, {'name': 'SUC', 'children': [{'name': 'n', 'children': []}]}]}, {'name': '-', 'children': [{'name': 'm', 'children': []}, {'name': 'n', 'children': []}]}]}]}]}]}
+option = {
+        tooltip: {    //提示框组件
+            trigger: 'item',    //触发类型，默认：item（数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用）。可选：'axis'：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。'none':什么都不触发。
+            triggerOn: 'mousemove'    //提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
+        },
+        series: [    //系列列表
+            {
+                type: 'tree',    //树形结构
+                initialTreeDepth:10,
+                data: [data],    //上面从flare.json中得到的数据
+                orient: 'vertical',
+                top: '5%',       //距离上
+                left: '7%',      //左
+                bottom: '5%',    //下
+                right: '20%',    //右的距离
+                edgeShape:'polyline',
+
+                symbolSize: 7,   //标记的大小，就是那个小圆圈，默认7
+
+                label: {         //每个节点所对应的标签的样式
+                    normal: {
+                        position: 'middle',       //标签的位置
+                        verticalAlign: 'middle',//文字垂直对齐方式，默认自动。可选：top，middle，bottom
+                        align: 'right',         //文字水平对齐方式，默认自动。可选：top，center，bottom
+                        fontSize: 18             //标签文字大小
+                    }
+                },
+
+                leaves: {    //叶子节点的特殊配置，如上面的树图示例中，叶子节点和非叶子节点的标签位置不同
+                    label: {
+                        normal: {
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    }
+                },
+
+                expandAndCollapse: true,    //子树折叠和展开的交互，默认打开
+                animationDuration: 550,     //初始动画的时长，支持回调函数,默认1000
+                animationDurationUpdate: 750//数据更新动画的时长，默认300
+            }
+        ]
+    };
+myChart1.setOption(option);
+myChart2.setOption(option);
+</script>
+</body>
+</html>
